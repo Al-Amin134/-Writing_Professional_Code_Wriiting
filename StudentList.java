@@ -93,5 +93,9 @@ public class StudentList
 
             System.out.println(constant.LOADED);
         }
+
+        else{
+            System.out.println(constant.INVALID);
+        }
     }
 }
