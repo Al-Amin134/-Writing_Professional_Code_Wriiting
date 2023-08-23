@@ -63,13 +63,7 @@ public class StudentList
         {
             System.out.println(constant.LOADING);
             Reader();
-
-                String t = args[0].substring(1);
-                Date d = new Date();
-                String df = constant.DATE_FORMATE;
-                DateFormat dateFormat = new SimpleDateFormat(df);
-                String fd= dateFormat.format(d);
-                Writer(constant.SPLIT+t+constant.ListLastUpdated+fd);
+                Writer(constant.SPLIT+args[0].substring(1)+constant.ListLastUpdated+new SimpleDateFormat(constant.DATE_FORMATE).format(new Date()));
             System.out.println(constant.LOADED);
         }
 
