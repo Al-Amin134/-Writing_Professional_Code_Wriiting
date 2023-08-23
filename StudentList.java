@@ -7,6 +7,11 @@ public class StudentList
     {
 
 //		Check arguments
+
+        if(args.length!=1){
+            System.out.println("Invalid input");
+            return;
+        }
         if(args[0].equals("a"))
         {
             System.out.println("Loading data ...");
