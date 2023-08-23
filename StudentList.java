@@ -5,14 +5,14 @@ public class StudentList
 {
     public static String names[];
     public static String studentName;
-
+    public static Constant constant = new Constant();
     public static void Reader() {
         try {
             BufferedReader bufferedReader = new BufferedReader(
                     new InputStreamReader(
-                            new FileInputStream("students.txt")));
+                            new FileInputStream(constant.FILE_NAME)));
             studentName = bufferedReader.readLine();
-            names = studentName.split(",");
+            names = studentName.split(constant.SPLIT);
         } catch (Exception e) {
         }
     }
@@ -20,7 +20,7 @@ public class StudentList
     public static void Writer(String updatedText) {
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(
-                    new FileWriter("students.txt", true));
+                    new FileWriter(constant.FILE_NAME, true));//here true means it will be available after write a string here...
                      bufferedWriter.write(updatedText);
                       bufferedWriter.close();
         } catch (Exception e) {
@@ -34,68 +34,68 @@ public class StudentList
 //		Check arguments
 
         if(args.length!=1){
-            System.out.println("Invalid input");
+            System.out.println(constant.INVALID);
             return;
         }
-        if(args[0].equals("a"))
+        if(args[0].equals(constant.SHOW_DATA))
         {
-            System.out.println("Loading data ...");
+            System.out.println(constant.LOADING);
             Reader();
                 for(String j : names)
                 {
                     System.out.println(j);
                 }
 
-            System.out.println("Data Loaded.");
+            System.out.println(constant.LOADED);
         }
-        else if(args[0].equals("r"))
+        else if(args[0].equals(constant.RANDOM))
         {
-            System.out.println("Loading data ...");
+            System.out.println(constant.LOADING);
             Reader();
                 Random x = new Random();
                 int y = x.nextInt();
                 System.out.println(names);
-            System.out.println("Data Loaded.");
+            System.out.println(constant.LOADED);
         }
 
 
-        else if(args[0].contains("+"))
+        else if(args[0].contains(constant.ADD_DATA))
         {
-            System.out.println("Loading data ...");
+            System.out.println(constant.LOADING);
             Reader();
 
                 String t = args[0].substring(1);
                 Date d = new Date();
-                String df = "dd/mm/yyyy-hh:mm:ss a";
+                String df = constant.DATE_FORMATE;
                 DateFormat dateFormat = new SimpleDateFormat(df);
                 String fd= dateFormat.format(d);
-                Writer(", "+t+"\nList last updated on "+fd);
-            System.out.println("Data Loaded.");
+                Writer(constant.SPLIT+t+constant.ListLastUpdated+fd);
+            System.out.println(constant.LOADED);
         }
 
 
-        else if(args[0].contains("?"))
+        else if(args[0].contains(constant.QUERY))
         {
-            System.out.println("Loading data ...");
+            System.out.println(constant.LOADING);
               Reader();
-                names = studentName.split(",");
+                names = studentName.split(constant.SPLIT);
                 boolean done = false;
 
                 String t = args[0].substring(1);
                 for(int idx = 0; idx<names.length && !done; idx++)
                 {
-                    if(names.equals(t))
+                    if(names[idx].equals(t))
                     {
-                        System.out.println("We found it!");
+                        System.out.println(constant.FOUND);
                         done=true;
                     }
                 }
 
-            System.out.println("Data Loaded.");
+            System.out.println(constant.LOADED);
         }
-        else if(args[0].contains("c"))
+        else if(args[0].contains(constant.COUNT))
         {
-            System.out.println("Loading data ...");
+            System.out.println(constant.LOADING);
             Reader();
                 char a[] = studentName.toCharArray();
                 boolean in_word = false;
@@ -115,9 +115,9 @@ public class StudentList
                         }
                     }
                 }
-                System.out.println(count +" word(s) found " + a.length);
+                System.out.println(count +constant.WORDS_FOUND + a.length);
 
-            System.out.println("Data Loaded.");
+            System.out.println(constant.LOADED);
         }
     }
 }
