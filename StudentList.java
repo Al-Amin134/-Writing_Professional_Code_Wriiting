@@ -3,6 +3,8 @@ import java.text.*;
 import java.util.*;
 public class StudentList
 {
+    public static String names[];
+    public static String studentName;
     public static void main(String[] args)
     {
 
@@ -17,12 +19,12 @@ public class StudentList
             System.out.println("Loading data ...");
             try
             {
-                BufferedReader s = new BufferedReader(
+                BufferedReader bufferedReader = new BufferedReader(
                         new InputStreamReader(
                                 new FileInputStream("students.txt")));
-                String r = s.readLine();
-                String i[] = r.split(",");
-                for(String j : i)
+                studentName = bufferedReader.readLine();
+                names = studentName.split(",");
+                for(String j : names)
                 {
                     System.out.println(j);
                 }
@@ -35,15 +37,15 @@ public class StudentList
             System.out.println("Loading data ...");
             try
             {
-                BufferedReader s = new BufferedReader(
+                BufferedReader bufferedReader = new BufferedReader(
                         new InputStreamReader(
                                 new FileInputStream("students.txt")));
-                String r = s.readLine();
-                System.out.println(r);
-                String i[] = r.split(",");
+                studentName = bufferedReader.readLine();
+                System.out.println(studentName);
+                names = studentName.split(",");
                 Random x = new Random();
                 int y = x.nextInt();
-                System.out.println(i[y]);
+                System.out.println(names);
             }
             catch (Exception e) {}
             System.out.println("Data Loaded.");
@@ -53,15 +55,15 @@ public class StudentList
             System.out.println("Loading data ...");
             try
             {
-                BufferedWriter s = new BufferedWriter(
+                BufferedWriter bufferedWriter = new BufferedWriter(
                         new FileWriter("students.txt", true));
                 String t = args[0].substring(1);
                 Date d = new Date();
                 String df = "dd/mm/yyyy-hh:mm:ss a";
                 DateFormat dateFormat = new SimpleDateFormat(df);
                 String fd= dateFormat.format(d);
-                s.write(", "+t+"\nList last updated on "+fd);
-                s.close();
+                bufferedWriter.write(", "+t+"\nList last updated on "+fd);
+                bufferedWriter.close();
             }
             catch (Exception e) {}
 
@@ -72,16 +74,16 @@ public class StudentList
             System.out.println("Loading data ...");
             try
             {
-                BufferedReader s = new BufferedReader(
+                BufferedReader bufferedReader = new BufferedReader(
                         new InputStreamReader(
                                 new FileInputStream("students.txt")));
-                String r = s.readLine();
-                String i[] = r.split(",");
+                studentName = bufferedReader.readLine();
+                names = studentName.split(",");
                 boolean done = false;
                 String t = args[0].substring(1);
-                for(int idx = 0; idx<i.length && !done; idx++)
+                for(int idx = 0; idx<names.length && !done; idx++)
                 {
-                    if(i[idx].equals(t))
+                    if(names.equals(t))
                     {
                         System.out.println("We found it!");
                         done=true;
@@ -96,10 +98,10 @@ public class StudentList
             System.out.println("Loading data ...");
             try
             {
-                BufferedReader s = new BufferedReader(
+                BufferedReader bufferedReader = new BufferedReader(
                         new InputStreamReader(
                                 new FileInputStream("students.txt")));
-                String D = s.readLine();
+                String D = bufferedReader.readLine();
                 char a[] = D.toCharArray();
                 boolean in_word = false;
                 int count=0;
