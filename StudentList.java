@@ -73,15 +73,13 @@ public class StudentList
             System.out.println(constant.LOADING);
               Reader();
                 names = studentName.split(constant.SPLIT);
-                boolean done = false;
-
                 String t = args[0].substring(1);
-                for(int idx = 0; idx<names.length && !done; idx++)
+                for(int idx = 0; idx<names.length; idx++)
                 {
                     if(names[idx].equals(t))
                     {
                         System.out.println(constant.FOUND);
-                        done=true;
+                        break;
                     }
                 }
 
